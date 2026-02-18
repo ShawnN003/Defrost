@@ -1,6 +1,8 @@
 import pool from "./db/config.js";
 import express from "express";
 import cors from "cors";
+import path from "path";
+
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +23,13 @@ const PORT = process.env.PORT;
 })();
 
 app.use(express.json());
+
+app.use(express.static("dist"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve("dist/index.html"));
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
