@@ -87,13 +87,13 @@ function App() {
   function error() {
     setLocError("Unable to get location.");
   }
-
   function success(position) {
     const { latitude, longitude } = position.coords;
     setLat(latitude);
     setLong(longitude);
     setLocationText(`Latitude: ${latitude}, Longitude: ${longitude}`);
     setLocError(null);
+    locationWeather(latitude, longitude);
   }
 
   return (
@@ -131,7 +131,7 @@ function App() {
           {weatherLoading && <p>Loading forecast...</p>}
           {!weatherLoading && weather && (
             <>
-              <p>Forecast low: {Math.round(weather.tomorrowLow)}F</p>
+              <p>Forecast low: {Math.round(weather.tomorrowLow)}°F</p>
               <p>Defrost reminder: {weather.frostRisk ? "ON" : "OFF"}</p>
               <p>
                 Suggested alarm:{" "}
