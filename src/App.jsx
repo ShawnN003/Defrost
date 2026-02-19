@@ -8,7 +8,7 @@ function App() {
   const [lat, setLat] = useState(0);
   const[locError,setLocError] = useState(null);
   const [locationText, setLocationText] = useState("");
-  const [currentTemp, setCurrentTemp] = useState(null);
+  const [currentTemp, setCurrentTemp] = useState(null); // new
   let locationErrorMessage = null;
   const handleSubmit = async () => {
     if (!phone.trim()) return;
