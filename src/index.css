@@ -66,3 +66,23 @@ h1 span {
 .error{
   color: red;
 } 
+
+.weather-card {
+  margin-top: 18px;
+  width: 100%;
+  max-width: 380px;
+  background: #121212;
+  border: 1px solid #2f3f51;
+  border-radius: 10px;
+  box-shadow: 0 0 4px #121212;
+  padding: 14px 16px;
+}
+
+.weather-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.weather-card p {
+  margin: 6px 0;
+}
