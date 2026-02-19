@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 (async () => {
   try {
     await pool.query("SELECT 1");
-    console.log("DB connected:");
+    console.log("DB connected");
   } catch (err) {
     console.error("DB connection failed");
     console.error(err.message);
