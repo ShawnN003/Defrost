@@ -7,16 +7,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev": "nodemon backend/index.js",
+    "dev": "vite",
     "start": "node backend/index.js",
     "db:init": "mysql < backend/db/schema.sql && mysql < backend/db/seed.sql",
     "dev:frontend": "vite"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "mysql2": "^3.16.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 (function enableCors() {
   app.use(cors());
@@ -12,19 +12,14 @@ const PORT = process.env.PORT;
 (async () => {
   try {
     await pool.query("SELECT 1");
-    console.log("DB connected:");
+    console.log("DB connected");
   } catch (err) {
     console.error("DB connection failed");
     console.error(err.message);
-    process.exit(1);
   }
 })();
 
 app.use(express.json());
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 app.post("/users", async (req, res) => {
   const phone = cleanPhoneNumber(req.body?.phoneNumber || req.body?.phone_number);
@@ -47,6 +42,10 @@ app.post("/users", async (req, res) => {
     console.error("saving user failed", err);
     return res.status(500).json({ error: "Unable to save user" });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 function cleanPhoneNumber(input) {
