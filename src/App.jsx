@@ -8,11 +8,12 @@ function App() {
   const [lat, setLat] = useState(0);
   const[locError,setLocError] = useState(null);
   const [locationText, setLocationText] = useState("");
+  const [currentTemp, setCurrentTemp] = useState(null);
   let locationErrorMessage = null;
   const handleSubmit = async () => {
     if (!phone.trim()) return;
     try {
-      locationWeather();
+      // locationWeather();
       const res = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -27,15 +28,22 @@ function App() {
     }
   };
 
-  const locationWeather = async () => {
-    try {
-      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m&current=temperature_2m&forecast_days=3&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`);
-      const body = await res.json();
-      console.log(body);
-    } catch (err) {
-      console.log(err)
+const locationWeather = async (latitude, longitude) => {
+  try {
+    const res = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&temperature_unit=fahrenheit`
+    );
+
+    const body = await res.json();
+
+    if (body?.current?.temperature_2m !== undefined) {
+      setCurrentTemp(body.current.temperature_2m);
     }
+
+  } catch (err) {
+    console.log(err);
   }
+};
 
 
   const getLocation = () => {
@@ -52,18 +60,20 @@ function App() {
   if (locError) {
     locationErrorMessage = <p className="error">{locError}</p>;
   }
-  function success(position) {
-    console.log(position.coords.latitude);
-    const { latitude, longitude } = position.coords;
-    
-    setLat(latitude);
-    setLong(longitude);
-    
-    setLocationText(
-      `Latitude: ${latitude}, Longitude: ${longitude}`
-    );
-    setLocError(null); 
-  }
+function success(position) {
+  const { latitude, longitude } = position.coords;
+
+  setLat(latitude);
+  setLong(longitude);
+
+  setLocationText(
+    `Latitude: ${latitude}, Longitude: ${longitude}`
+  );
+
+  setLocError(null);
+
+  locationWeather(latitude, longitude);
+}
 
   return (
     <>
@@ -90,6 +100,12 @@ function App() {
         </button> 
         {<p className="error">{locationErrorMessage}</p>}
         <p>{locationText}</p>
+        {currentTemp !== null && (
+        <div className="weather-card">
+          <h2>{currentTemp}°F</h2>
+          <p>Current Temperature</p>
+        </div>
+      )}
       </div>
     </>
   );
