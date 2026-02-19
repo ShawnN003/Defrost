@@ -1,11 +1,9 @@
 import pool from "./db/config.js";
 import express from "express";
 import cors from "cors";
-import path from "path";
-
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 (function enableCors() {
   app.use(cors());
@@ -18,22 +16,10 @@ const PORT = process.env.PORT;
   } catch (err) {
     console.error("DB connection failed");
     console.error(err.message);
-    process.exit(1);
   }
 })();
 
 app.use(express.json());
-
-app.use(express.static("dist"));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve("dist/index.html"));
-});
-
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 app.post("/users", async (req, res) => {
   const phone = cleanPhoneNumber(req.body?.phoneNumber || req.body?.phone_number);
@@ -56,6 +42,10 @@ app.post("/users", async (req, res) => {
     console.error("saving user failed", err);
     return res.status(500).json({ error: "Unable to save user" });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 function cleanPhoneNumber(input) {
