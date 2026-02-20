@@ -1,10 +1,8 @@
 body {
   margin: 0;
-  /* background: #293642; */
-  background: linear-gradient(#4f7090, #353d4a);
-  background-repeat: no-repeat;
+  background: #121212;
   min-height: 100vh;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins';
   color: rgba(255, 255, 255, 0.87);
   text-align: center;
   display: flex;
@@ -12,15 +10,14 @@ body {
 }
 
 .register {
-  background: #121212;
-  width: 500px;
-  height: 600px;
+  background: #1e1e1e;
+  width: 90vw;
+  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 4px #121212;
+  box-shadow: -7px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
 .phone-input {
@@ -31,9 +28,13 @@ input {
   display: block;
   margin-top: 10px;
   width: 200px;
-  padding: 5px 2px;;
+  padding: 6px 10px;
   border: none;
-  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Montserrat";
+  background: #2d2d2d;
+  color: #ffffff;
 }
 
 .btn {
@@ -42,37 +43,35 @@ input {
   font-family: inherit;
   font-weight: bold;
   color: white;
-  background: rgb(42, 79, 122);
+  background: #7b2222;
   border: none;
-  border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
+  box-shadow: -3px 3px 0px rgba(0, 0, 0, 0.4);
 }
 
 .btn:hover {
-  background: rgb(0, 247, 255);
+  background: #6c1818;
 }
 
-h1 span {
+h1 {
   font-size: 50px;
-  background: #121212;
-  border-radius: 10px;
-  padding: 0px 15px;
-  box-shadow: 0 0 2px #121212;
+  color: #f4f4f4;
 }
+
 #userPrompt{
   font-size: 20px;
-  font-family: "Times New Roman", Times, serif;  
 }
+
 .error{
-  color: red;
+  color: #ff6b6b;
 } 
 
 .weather-card {
   margin-top: 20px;
   padding: 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  background: rgba(30, 58, 86, 0.9);
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.5);
+  color: #f0f0f0;
 }
 
 .weather-card h2 {
@@ -82,6 +81,17 @@ h1 span {
 
 .weather-card p {
   margin-top: 5px;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 18px;
+  font-style: italic;
+  font-family: "Montserrat";
+}
+
+p {
+  font-family: "Montserrat";
+}
+
+footer {
+  margin-top: auto;
+  padding: 20px;
+  color: #888;
 }

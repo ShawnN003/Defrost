@@ -98,7 +98,7 @@ function App() {
 
   return (
     <>
-      <h1><span>Defrost</span></h1>
+      <h1><span>[Defrost]</span></h1>
       <div className="register">
         <div className="phone-input">
           <label htmlFor="phone-number" id="userPrompt">
@@ -127,14 +127,14 @@ function App() {
         <p>{locationText}</p>
 
         <div className="weather-card">
-          <h2>Tomorrow Morning Status</h2>
+          <h2>Tomorrow's Morning</h2>
           {weatherLoading && <p>Loading forecast...</p>}
           {!weatherLoading && weather && (
             <>
-              <p>Forecast low: {Math.round(weather.tomorrowLow)}°F</p>
-              <p>Defrost reminder: {weather.frostRisk ? "ON" : "OFF"}</p>
+              <p>Forecast low ￫ {Math.round(weather.tomorrowLow)}°F</p>
+              <p>Defrost reminder ￫ {weather.frostRisk ? "ON" : "OFF"}</p>
               <p>
-                Suggested alarm:{" "}
+                Suggested alarm ￫ {" "}
                 {weather.suggestedWakeupOffset > 0
                   ? `${weather.suggestedWakeupOffset} minutes earlier`
                   : "No earlier alarm needed"}
@@ -144,6 +144,7 @@ function App() {
           {!weatherLoading && !weather && <p>Press "Check Frost Risk" after getting location.</p>}
         </div>
       </div>
+      <footer>Copyright © 2026 Defrost. All rights reserved.</footer>
     </>
   );
 }
