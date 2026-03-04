@@ -5,6 +5,12 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const twilio = require("twilio");
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
+const client = twilio(accountSid, authToken);
+
 (function enableCors() {
   app.use(cors());
 })();
@@ -43,6 +49,16 @@ app.post("/users", async (req, res) => {
     return res.status(500).json({ error: "Unable to save user" });
   }
 });
+
+app.post("/send-text", async (req,res) => {
+    const message = await client.messages.create({
+      body: "Defrost detected! Set an earlier alarm for tommorow!",
+      from: `${twilioNumber}`,
+      to: `+1${phone}`,
+    });
+    console.log(message);
+    return res.status(200).json({message: message})
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
