@@ -102,7 +102,7 @@ function App() {
       <div className="register">
         <div className="phone-input">
           <label htmlFor="phone-number" id="userPrompt">
-            Enter a Phone Number:
+            TESTING A CHANGE a Phone Number:
             <input
               id="phone-number"
               value={phone}
