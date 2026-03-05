@@ -37,11 +37,30 @@ function App() {
 
       setStatus(`Saved as ${body.phoneNumber}`);
       alert("Thank you for your submission!");
+
+      sendTestMessage();
     } catch (err) {
       console.error(err);
       setStatus(`Cannot reach backend at ${API_BASE_URL}. Start backend and try again.`);
     }
   };
+
+  const sendTestMessage = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/send-text`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phoneNumber: phone }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setStatus(body?.error || `SText failed (${res.status})`);
+        return;
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const locationWeather = async (latitude = lat, longitude = long) => {
     if (!latitude || !longitude) {

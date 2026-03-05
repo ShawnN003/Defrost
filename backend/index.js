@@ -52,8 +52,10 @@ app.post("/users", async (req, res) => {
 app.post("/send-text", async (req,res) => {
     const message = await client.messages.create({
       body: "Defrost detected! Set an earlier alarm for tommorow!",
-      from: `${twilioNumber}`,
-      to: `+1${phone}`,
+      messagingServiceSid: 'MG445aabc3d69bafeae5a179c6716a3f66',
+      to: '+18777804236'
+      // from: `${twilioNumber}`,
+      // to: `+1${phone}`,
     });
     console.log(message);
     return res.status(200).json({message: message})
