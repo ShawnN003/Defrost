@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "dev": "vite",
     "dev:backend": "nodemon backend/index.js",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "start": "node backend/index.js",
     "db:init": "mysql < backend/db/schema.sql && mysql < backend/db/seed.sql",
     "dev:frontend": "vite"
