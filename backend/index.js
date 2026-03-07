@@ -65,7 +65,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-function cleanPhoneNumber(input) {
+export function cleanPhoneNumber(input) {
   if (typeof input !== "string") return null;
   const digits = input.replace(/\D/g, "");
   return digits.length >= 10 ? digits : null;
