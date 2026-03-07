@@ -1,5 +1,5 @@
 import request from "supertest";
-
+import { describe, test, expect } from "vitest";
 const server = "http://localhost:3000";
 
 describe("POST /users", () => {
@@ -7,10 +7,10 @@ describe("POST /users", () => {
   test("creates a user with valid phone number", async () => {
     const res = await request(server)
       .post("/users")
-      .send({ phoneNumber: "2065551234" })
+      .send({ phoneNumber: "2065751234" })
       .expect(201);
 
-    expect(res.body.phoneNumber).toBe("2065551234");
+    expect(res.body.phoneNumber).toBe("2065751234");
     expect(res.body.id).toBeDefined();
   });
 
