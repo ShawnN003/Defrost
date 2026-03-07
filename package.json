@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "dev": "vite",
     "dev:backend": "nodemon backend/index.js",
-    "test": "npm run test:frontend && npm run test:integration",
+    "test": "npm run test:frontend && npm run test:integration && npm run test:e2e",
     "test:e2e": "playwright test",
     "test:integration": "npm --prefix backend run test",
     "test:frontend": "vitest run",
