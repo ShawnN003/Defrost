@@ -1,10 +1,11 @@
 import request from "supertest";
-import app from "../../src/app.js";
+
+const server = "http://localhost:3000";
 
 describe("POST /users", () => {
 
   test("creates a user with valid phone number", async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post("/users")
       .send({ phoneNumber: "2065551234" })
       .expect(201);
@@ -14,7 +15,7 @@ describe("POST /users", () => {
   });
 
   test("rejects invalid phone numbers", async () => {
-    const res = await request(app)
+    const res = await request(server)
       .post("/users")
       .send({ phoneNumber: "abc" })
       .expect(400);
@@ -26,11 +27,11 @@ describe("POST /users", () => {
 
   test("rejects duplicate phone numbers", async () => {
 
-    await request(app)
+    await request(server)
       .post("/users")
       .send({ phoneNumber: "2065551234" });
 
-    const res = await request(app)
+    const res = await request(server)
       .post("/users")
       .send({ phoneNumber: "2065551234" })
       .expect(409);
