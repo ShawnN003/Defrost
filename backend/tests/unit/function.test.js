@@ -1,0 +1,41 @@
+import request from "supertest";
+import app from "../../src/app.js";
+
+describe("POST /users", () => {
+
+  test("creates a user with valid phone number", async () => {
+    const res = await request(app)
+      .post("/users")
+      .send({ phoneNumber: "2065551234" })
+      .expect(201);
+
+    expect(res.body.phoneNumber).toBe("2065551234");
+    expect(res.body.id).toBeDefined();
+  });
+
+  test("rejects invalid phone numbers", async () => {
+    const res = await request(app)
+      .post("/users")
+      .send({ phoneNumber: "abc" })
+      .expect(400);
+
+    expect(res.body.error).toBe(
+      "Provide a numeric phoneNumber with at least 10 digits"
+    );
+  });
+
+  test("rejects duplicate phone numbers", async () => {
+
+    await request(app)
+      .post("/users")
+      .send({ phoneNumber: "2065551234" });
+
+    const res = await request(app)
+      .post("/users")
+      .send({ phoneNumber: "2065551234" })
+      .expect(409);
+
+    expect(res.body.error).toBe("Phone number already registered");
+  });
+
+});
