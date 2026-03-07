@@ -7,10 +7,10 @@ describe("POST /users", () => {
   test("creates a user with valid phone number", async () => {
     const res = await request(server)
       .post("/users")
-      .send({ phoneNumber: "3065758534" })
+      .send({ phoneNumber: "5065758534" })
       .expect(201);
 
-    expect(res.body.phoneNumber).toBe("3065758534");
+    expect(res.body.phoneNumber).toBe("5065758534");
     expect(res.body.id).toBeDefined();
   });
 
