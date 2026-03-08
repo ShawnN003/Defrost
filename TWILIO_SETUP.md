@@ -48,3 +48,16 @@ Every free account has $15.50 in credit. With one SMS message costing about $0.0
 Next steps:
 
 Verify personal number, test in backend with thank you message, create shell for thank you for signing up and defrost alert for backend.
+
+
+### Testing:
+npm i (in backend and frontend)
+npm run test 
+
+### Docker
+**Prereq:** Docker installed
+
+1. `docker compose build`
+2. `docker compose up`
+3. `docker compose down`
+
